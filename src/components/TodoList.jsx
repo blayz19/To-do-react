@@ -2,20 +2,24 @@ import TodoItem from "./TodoItem";
 const TodoList = (props) => {
   const {
     tasks = [],
+    filteredTasks,
     onDeleteTaskButtonClick,
     onTaskCompleteChange,
+    firstIncompleteTaskRef,
+    firstIncompleteTaskId,
   } = props
   
-  
-  
-  
-  const hasTasks = true;
+  const hasTasks = tasks.length > 0;
+  const isEmptyFilteredTasks = filteredTasks?.length === 0 
   if (!hasTasks) {
-    return <div className="todo__empty-message"></div>;
-  } else {
+    return <div className="todo__empty-message">There are no tasks yet</div>;
+  }
+  if(hasTasks && isEmptyFilteredTasks){
+    return <div className="todo__empty-message">Tasks not found</div>;
+  }
     return (
       <ul className="todo__list">
-        {tasks.map((task)=>(
+        {(filteredTasks ?? tasks).map((task)=>(
           <TodoItem 
             className="todo__item"
             key={task.id}
@@ -24,11 +28,11 @@ const TodoList = (props) => {
             isDone={task.isDone}
             onDeleteTaskButtonClick={onDeleteTaskButtonClick}
             onTaskCompleteChange = {onTaskCompleteChange}
+            ref={task.id === firstIncompleteTaskId ? firstIncompleteTaskRef : null}
           />
         ))}
       </ul>
     );
   }
-};
 
 export default TodoList;
