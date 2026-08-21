@@ -19,3 +19,12 @@ button {
   outline-offset: 4px;
   transition-duration: 0s !important;
 }
+
+a{
+  text-decoration: none;
+  color: var(--color-black);
+}
+
+a:hover{
+  font-size: 110%;
+}
