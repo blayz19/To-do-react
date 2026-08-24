@@ -28,6 +28,8 @@ const TasksProvider = (props) => {
     setNewTaskTitle,
     newTaskInputRef,
     addTask,
+    disappearingTaskId,
+    appearingTaskId
   } = useTasks();
 
   const {
@@ -51,6 +53,8 @@ const TasksProvider = (props) => {
         setNewTaskTitle,
         newTaskInputRef,
         addTask,
+        disappearingTaskId,
+        appearingTaskId
       }}
     >
       {children}
